@@ -19,6 +19,15 @@ let AppController = class AppController {
     getHello() {
         return this.appService.getHello();
     }
+    getAbdullah() {
+        return this.appService.getAbdullah();
+    }
+    getCal() {
+        return this.appService.getCal();
+    }
+    getDate() {
+        return this.appService.getNow();
+    }
 };
 __decorate([
     (0, common_1.Get)(),
@@ -26,6 +35,24 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", String)
 ], AppController.prototype, "getHello", null);
+__decorate([
+    (0, common_1.Get)('/abdullah'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", String)
+], AppController.prototype, "getAbdullah", null);
+__decorate([
+    (0, common_1.Get)('/cal'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Number)
+], AppController.prototype, "getCal", null);
+__decorate([
+    (0, common_1.Get)('/date'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Date)
+], AppController.prototype, "getDate", null);
 AppController = __decorate([
     (0, common_1.Controller)(),
     __metadata("design:paramtypes", [app_service_1.AppService])
