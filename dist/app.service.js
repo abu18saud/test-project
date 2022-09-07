@@ -9,17 +9,48 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppService = void 0;
 const common_1 = require("@nestjs/common");
 let AppService = class AppService {
+    constructor() {
+        this.newLine = "<br>";
+        this.objects = [
+            {
+                name: "Abdullah",
+                age: 31,
+                work: 'EliteSkills'
+            },
+            {
+                name: "Shimaa",
+                age: 19,
+                work: 'TVTC'
+            },
+            {
+                name: "Reman",
+                age: 19,
+                work: 'TVTC'
+            }
+        ];
+    }
     getHello() {
         return 'Hello World!';
     }
     getAbdullah() {
-        return "Abdullah Alsalem";
+        return {
+            name: "Abdullah",
+            age: 31,
+            work: "EliteSkills"
+        };
     }
     getCal() {
         return 100 + 200;
     }
     getNow() {
         return new Date();
+    }
+    getObject() {
+        let result = "";
+        for (let object of this.objects) {
+            result += "I am " + object.name + " my age is: " + object.age + " working at: " + object.work + this.newLine;
+        }
+        return result;
     }
 };
 AppService = __decorate([

@@ -10,9 +10,14 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Get('/abdullah')
+  @Get('/abdullah/age')
   getAbdullah(): string {
-    return this.appService.getAbdullah();
+    return this.appService.getAbdullah().age;
+  }
+
+  @Get('/abdullah/name')
+  getAbdullahName(): string {
+    return this.appService.getAbdullah().name;
   }
 
   @Get('/cal')
@@ -24,4 +29,10 @@ export class AppController {
   getDate(): Date{
     return this.appService.getNow();
   }
+
+  @Get('/object')
+  getObject(): any{
+    return this.appService.getObject();
+  }
+
 }

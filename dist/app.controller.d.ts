@@ -4,6 +4,8 @@ export declare class AppController {
     constructor(appService: AppService);
     getHello(): string;
     getAbdullah(): string;
+    getAbdullahName(): string;
     getCal(): number;
     getDate(): Date;
+    getObject(): any;
 }
