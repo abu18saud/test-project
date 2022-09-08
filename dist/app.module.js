@@ -10,27 +10,11 @@ exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
-const typeorm_1 = require("@nestjs/typeorm");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [
-            typeorm_1.TypeOrmModule.forRoot({
-                type: 'mysql',
-                host: 'sql205.byetcluster.com',
-                port: 3306,
-                username: 'epiz_32542567',
-                password: 'KHQhEmN9iWjKR79',
-                database: 'epiz_32542567_test',
-                charset: 'utf8mb4',
-                logging: false,
-                autoLoadEntities: true,
-                synchronize: true,
-                acquireTimeout: 100000,
-                connectTimeout: 100000,
-            })
-        ],
+        imports: [],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })
