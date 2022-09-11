@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
+import { users } from './users/entities/user.entity';
 
 
 @Module({
@@ -18,7 +19,7 @@ import { UsersModule } from './users/users.module';
         require: true, // This will help you. But you will see nwe error
         rejectUnauthorized: false // This line will fix new error
       },
-      entities: [],
+      entities: [users],
       synchronize: true,
     }),
     UsersModule,

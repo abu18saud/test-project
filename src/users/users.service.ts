@@ -8,10 +8,16 @@ export class UsersService {
   constructor(
     @InjectRepository(users)
     private readonly usersRepository: Repository<users>,
-) { }
+  ) { }
 
   async create(users: users) {
-    return await this.usersRepository.save(users);
+    return await this.usersRepository.save({
+      id: users.id,
+      ar_name: users.ar_name,
+      en_name: users.en_name,
+      created_date: users.created_date,
+      modified_date: users.modified_date
+    })
   }
 
   findAll(): Promise<users[]> {
@@ -23,7 +29,7 @@ export class UsersService {
   }
 
   async findGroup(id: number): Promise<any> {
-    return this.usersRepository.query("Select DISTINCT * from users WHERE group_id="+ id +" ORDER BY id");
+    return this.usersRepository.query("Select DISTINCT * from users WHERE group_id=" + id + " ORDER BY id");
   }
 
   async update(users: users): Promise<UpdateResult> {
