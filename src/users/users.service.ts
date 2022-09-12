@@ -5,6 +5,7 @@ import { users } from './entities/user.entity';
 
 @Injectable()
 export class UsersService {
+  public user: Promise<users>;
   constructor(
     @InjectRepository(users)
     private readonly usersRepository: Repository<users>,
@@ -24,8 +25,9 @@ export class UsersService {
     return this.usersRepository.find();
   }
 
-  findOne(id: any): Promise<users> {
-    return this.usersRepository.findOne(id);
+  async findOne(id: number): Promise<users> {
+    this.user = await this.usersRepository.query("Select * from users WHERE id=" + id) as Promise<users>;
+    return this.user[0];
   }
 
   async findGroup(id: number): Promise<any> {
