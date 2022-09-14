@@ -1,6 +1,5 @@
 import { Column, Entity, IsNull, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
-
 @Entity()
 export class users {
     @PrimaryGeneratedColumn()
