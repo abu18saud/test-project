@@ -4,6 +4,8 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
 import { users } from './users/entities/user.entity';
+import { AuthModule } from './auth/auth.module';
+import { Auth } from './auth/entities/auth.entity';
 
 
 @Module({
@@ -19,10 +21,11 @@ import { users } from './users/entities/user.entity';
         require: true, // This will help you. But you will see nwe error
         rejectUnauthorized: false // This line will fix new error
       },
-      entities: [users],
+      entities: [users, Auth],
       synchronize: true,
     }),
     UsersModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

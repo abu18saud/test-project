@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { encodePassword } from 'src/utils/bcrypt';
 import { Repository, UpdateResult } from 'typeorm';
 import { users } from './entities/user.entity';
 
@@ -12,21 +13,38 @@ export class UsersService {
   ) { }
 
   async create(users: users) {
-    return await this.usersRepository.save({
-      id: users.id,
-      ar_name: users.ar_name,
-      en_name: users.en_name,
-      created_date: users.created_date,
-      modified_date: users.modified_date
-    })
+    users.password = encodePassword(users.password);
+    console.log(users.password);
+    return await this.usersRepository.save(users);
   }
 
   findAll(): Promise<users[]> {
     return this.usersRepository.find();
   }
 
-  async findOne(id: number): Promise<users> {
-    this.user = await this.usersRepository.query("Select * from users WHERE id=" + id) as Promise<users>;
+  async findOne(id: number): Promise<any> {
+    return await this.usersRepository.findOne({ 
+      where: { 
+        id: id
+      } 
+    });
+
+    // this.user = await this.usersRepository.query("Select * from users WHERE id=" + id) as Promise<users>;
+    // return this.user[0];
+  }
+
+  async findUserByUsername(username: string): Promise<any> {
+    return await this.usersRepository.findOne({ 
+      where: { 
+        username: username
+      } 
+    });
+    // this.user = await this.usersRepository.query("Select * from users WHERE username='" + username +"'") as Promise<users>;
+    // return this.user[0];
+  }
+
+  async findUserByUsername_(username: string): Promise<any> {
+    this.user = await this.usersRepository.query("Select * from users WHERE username='" + username +"'") as Promise<users>;
     return this.user[0];
   }
 
