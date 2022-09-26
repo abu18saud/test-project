@@ -21,7 +21,8 @@ import { Auth } from './auth/entities/auth.entity';
         require: true, // This will help you. But you will see nwe error
         rejectUnauthorized: false // This line will fix new error
       },
-      entities: [users, Auth],
+      //entities: [users, Auth],
+      autoLoadEntities: true,
       synchronize: true,
     }),
     UsersModule,

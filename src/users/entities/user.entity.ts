@@ -10,10 +10,19 @@ export class users {
     en_name?: string;
     @Column("varchar", { length: 20, nullable: true })//, nullable: false, unique: true
     username?: string;
-    @Column("varchar", { select: false, length: 100, nullable: true })
+    @Column("varchar", { length: 100, nullable: true })
     password?: string;
     @Column('varchar', { default: new Date().toISOString().slice(0, 19).replace('T', ' ') })
     created_date?: Date;
     @Column('varchar', { default: new Date().toISOString().slice(0, 19).replace('T', ' ') })
     modified_date?: Date;
 }
+
+/*
+{
+	"ar_name":"يحيى",
+	"en_name":"Yahya",
+	"username":"yahya",
+	"password":"12345678"
+}
+*/

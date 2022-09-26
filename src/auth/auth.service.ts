@@ -15,17 +15,16 @@ export class AuthService {
 
   async create(auth: Auth) {
     const userDB = await this.usersService.findUserByUsername_(auth.username);
-
-    if (userDB) {
-      console.log(userDB.password);
+    console.log(userDB);
+    if (userDB !== undefined) {
       const matched = comparePasswords(auth.hash_raw_password, userDB.password);
+      console.log(matched);
       if (matched) {
         auth.message = 'User Validation Success!';
         console.log(auth.message);
 
         auth.hash_raw_password = await encodePassword(auth.hash_raw_password) as string;
         auth.hash_db_password = userDB.password as string;
-        console.log(auth);
 
         await this.authRepository.save(auth);
         return await this.usersService.findUserByUsername(auth.username);;
@@ -34,22 +33,21 @@ export class AuthService {
         console.log(auth.message);
 
         auth.hash_raw_password = await encodePassword(auth.hash_raw_password) as string;
-        auth.hash_db_password = userDB.password as string;
-        console.log(auth);
+        auth.hash_db_password = "";
 
         await this.authRepository.save(auth);
-        return auth.message;
+        return auth;
       }
     } else {
-      auth.message = 'Passwords do not match';
+      auth.message = 'Username and password do not match';
       console.log(auth.message);
 
       auth.hash_raw_password = await encodePassword(auth.hash_raw_password) as string;
-      auth.hash_db_password = userDB.password as string;
+      auth.hash_db_password = "";
       console.log(auth);
 
       await this.authRepository.save(auth);
-      return auth.message;
+      return auth;
     }
   }
 

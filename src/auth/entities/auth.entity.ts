@@ -15,3 +15,10 @@ export class Auth {
     @Column('varchar', { default: new Date().toISOString().slice(0, 19).replace('T', ' ') })
     created_date?: Date;
 }
+
+/*
+{
+	"username":"yahya",
+	"hash_raw_password":"12345678"
+}
+*/

@@ -43,7 +43,7 @@ export class UsersService {
     // return this.user[0];
   }
 
-  async findUserByUsername_(username: string): Promise<any> {
+  async findUserByUsername_(username: string): Promise<users> {
     this.user = await this.usersRepository.query("Select * from users WHERE username='" + username +"'") as Promise<users>;
     return this.user[0];
   }

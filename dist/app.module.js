@@ -12,9 +12,7 @@ const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const typeorm_1 = require("@nestjs/typeorm");
 const users_module_1 = require("./users/users.module");
-const user_entity_1 = require("./users/entities/user.entity");
 const auth_module_1 = require("./auth/auth.module");
-const auth_entity_1 = require("./auth/entities/auth.entity");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -31,7 +29,7 @@ AppModule = __decorate([
                     require: true,
                     rejectUnauthorized: false
                 },
-                entities: [user_entity_1.users, auth_entity_1.Auth],
+                autoLoadEntities: true,
                 synchronize: true,
             }),
             users_module_1.UsersModule,
