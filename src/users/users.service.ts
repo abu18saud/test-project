@@ -53,6 +53,7 @@ export class UsersService {
   }
 
   async update(users: users): Promise<UpdateResult> {
+    users.password = encodePassword(users.password);
     return await this.usersRepository.update(users.id, users);
   }
 
