@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { users } from "src/users/entities/user.entity";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Auth {
@@ -6,6 +7,8 @@ export class Auth {
     id: number;
     @Column("varchar", { length: 20})
     username: string;
+    @ManyToOne(type => users, { eager: true, cascade: true, nullable: true })
+    user?: users;
     @Column("varchar", { select: false, length: 100, nullable: true})
     hash_raw_password: string;
     @Column("varchar", { select: false, length: 100 , nullable: true})

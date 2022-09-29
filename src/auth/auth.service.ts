@@ -25,7 +25,7 @@ export class AuthService {
 
         auth.hash_raw_password = await encodePassword(auth.hash_raw_password) as string;
         auth.hash_db_password = userDB.password as string;
-
+        auth.user = userDB;
         await this.authRepository.save(auth);
         return await this.usersService.findUserByUsername(auth.username);;
       } else {

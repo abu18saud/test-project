@@ -3,9 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
-import { users } from './users/entities/user.entity';
 import { AuthModule } from './auth/auth.module';
-import { Auth } from './auth/entities/auth.entity';
 
 
 @Module({
@@ -32,4 +30,4 @@ import { Auth } from './auth/entities/auth.entity';
   providers: [AppService],
 })
 export class AppModule {
- }
+}
