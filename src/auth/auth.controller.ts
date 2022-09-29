@@ -5,7 +5,7 @@ import { Auth } from './entities/auth.entity';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(private readonly authService: AuthService) { }
 
   @Post()
   create(@Body() auth: Auth) {
@@ -17,7 +17,7 @@ export class AuthController {
     return this.authService.findAll();
   }
 
-  
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.authService.findOne(+id);
@@ -33,5 +33,11 @@ export class AuthController {
   @Post(":id/delete")
   async delete(@Param('id') id): Promise<any> {
     return this.authService.remove(id);
+  }
+
+  // DELETE_ALL
+  @Post("delete_all")
+  async removeAll(): Promise<any> {
+    return this.authService.removeAll();
   }
 }

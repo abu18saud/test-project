@@ -23,10 +23,10 @@ export class UsersService {
   }
 
   async findOne(id: number): Promise<any> {
-    return await this.usersRepository.findOne({ 
-      where: { 
+    return await this.usersRepository.findOne({
+      where: {
         id: id
-      } 
+      }
     });
 
     // this.user = await this.usersRepository.query("Select * from users WHERE id=" + id) as Promise<users>;
@@ -34,17 +34,17 @@ export class UsersService {
   }
 
   async findUserByUsername(username: string): Promise<any> {
-    return await this.usersRepository.findOne({ 
-      where: { 
+    return await this.usersRepository.findOne({
+      where: {
         username: username
-      } 
+      }
     });
     // this.user = await this.usersRepository.query("Select * from users WHERE username='" + username +"'") as Promise<users>;
     // return this.user[0];
   }
 
   async findUserByUsername_(username: string): Promise<users> {
-    this.user = await this.usersRepository.query("Select * from users WHERE username='" + username +"'") as Promise<users>;
+    this.user = await this.usersRepository.query("Select * from users WHERE username='" + username + "'") as Promise<users>;
     return this.user[0];
   }
 
@@ -59,5 +59,10 @@ export class UsersService {
 
   remove(id: number): Promise<any> {
     return this.usersRepository.delete(id);
+  }
+
+  async removeAll(): Promise<any> {
+    this.user = await this.usersRepository.query("DELETE FROM Users") as Promise<any>;
+    return "Ok, Delete all rows in users table";
   }
 }

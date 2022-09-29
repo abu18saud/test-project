@@ -22,7 +22,7 @@ export class UsersController {
     return this.usersService.findGroup(+id);
   }
 
-  
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(+id);
@@ -38,5 +38,11 @@ export class UsersController {
   @Post(":id/delete")
   async delete(@Param('id') id): Promise<any> {
     return this.usersService.remove(id);
+  }
+
+  // DELETE_ALL
+  @Post("delete_all")
+  async deleteAll(): Promise<any> {
+    return this.usersService.removeAll();
   }
 }

@@ -26,8 +26,7 @@ export class AuthService {
         auth.hash_raw_password = await encodePassword(auth.hash_raw_password) as string;
         auth.hash_db_password = userDB.password as string;
         auth.user = userDB;
-        await this.authRepository.save(auth);
-        return await this.usersService.findUserByUsername(auth.username);;
+        return await this.authRepository.save(auth);
       } else {
         auth.message = 'User Validation Faild!';
         console.log(auth.message);
@@ -39,7 +38,7 @@ export class AuthService {
         return auth;
       }
     } else {
-      auth.message = 'Username and password do not match';
+      auth.message = 'هذا المستخدم ليس موجوداً في النظام';
       console.log(auth.message);
 
       auth.hash_raw_password = await encodePassword(auth.hash_raw_password) as string;
@@ -69,5 +68,10 @@ export class AuthService {
 
   remove(id: number): Promise<any> {
     return this.authRepository.delete(id);
+  }
+
+  async removeAll(): Promise<any> {
+    await this.authRepository.query("DELETE FROM Auth") as Promise<any>;
+    return "Ok, Delete all rows in Auth table";
   }
 }
